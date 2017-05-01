@@ -50,6 +50,19 @@
                 function onGetDCIM(entries) {
                     var i;
                     for (i = 0; i < entries.length; i++) {
+                        if (entries[i].name === "Camera") {
+                            var mediaReader = entries[i].createReader();
+                            mediaReader.readEntries(onGetFileNames, fail);
+                            break; // remove this to traverse through all the folders and files
+                        }
+                        //This will log all files and directories inside 100MEDIA
+                        window.console.log(" >>>>>>> " + entries[i].name);
+                    }
+                }
+
+                function onGetFileNames(entries) {
+                    var i;
+                    for (i = 0; i < entries.length; i++) {
                         if (/\.(jpe?g|png|gif|bmp)$/i.test(entries[i].name)) {
                             alert(entries[i].name);
                         }
