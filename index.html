@@ -2,7 +2,7 @@
 <html>
 <script type="text/javascript" src="cordova.js"></script>
 
-<body>
+<body onload="onload()">
     <div style="text-align:center">
         <div>
             <ul id="select-demo">
@@ -10,7 +10,8 @@
         </div>
     </div>
     <script type="text/javascript" charset="utf-8">
-    document.addEventListener("deviceready", onDeviceReady, false);
+    function onload () {
+      document.addEventListener("deviceready", onDeviceReady, false);
 
     function onDeviceReady() {
         var myPath = cordova.file.externalRootDirectory;
@@ -47,9 +48,11 @@
         function getFilepath(thefilepath) {
             alert(thefilepath);
         }
-        // listPath(myPath);
-        listPath("file://storage/0");
+        listPath(myPath);
+        // listPath("file://storage/0");
     }
+    }
+    
     </script>
 </body>
 

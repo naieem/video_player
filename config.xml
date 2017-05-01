@@ -2,17 +2,19 @@
 <widget id="com.acxcom.gesd" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
     <name>GESD</name>
     <description>
-		Application développée sur demande pour la Ville de Laval.
-	</description>
+        Application développée sur demande pour la Ville de Laval.
+    </description>
     <author email="support@acxcom.com" href="http://acxcom.com">
-		Sylvain Asselin
-	</author>
+        Sylvain Asselin
+    </author>
     <content src="index.html" />
     <preference name="DisallowOverscroll" value="true" />
     <preference name="android-minSdkVersion" value="14" />
     <preference name="orientation" value="landscape" />
     <preference name="target-device" value="tablet" />
     <preference name="fullscreen" value="true" />
+    <preference name="AndroidPersistentFileLocation" value="Internal" />
+    <preference name="AndroidPersistentFileLocation" value="Compatibility" />
     <!-- <plugin name="cordova-plugin-battery-status" source="npm" spec="~1.1.1" />
     <plugin name="cordova-plugin-camera" source="npm" spec="~2.1.1" />
     <plugin name="cordova-plugin-media-capture" source="npm" spec="~1.2.0" />
@@ -33,7 +35,7 @@
     <plugin name="cordova-plugin-statusbar" source="npm" spec="~2.1.2" />
     <plugin name="cordova-plugin-vibration" source="npm" spec="~2.1.0" />
     <plugin name="cordova-plugin-whitelist" source="npm" spec="~1.2.1" /> -->
-    <plugin name="cordova-plugin-file" source="npm"/>
+    <plugin name="cordova-plugin-file" source="npm" />
     <platform name="android">
         <icon density="ldpi" src="www/res/icon/android/icon-36-ldpi.png" />
         <icon density="mdpi" src="www/res/icon/android/icon-48-mdpi.png" />
