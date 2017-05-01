@@ -26,9 +26,10 @@
 
                 function onSuccessCallback(entries) {
                     alert(entries.length);
+                    var html = '';
                     for (i = 0; i < entries.length; i++) {
                         var row = entries[i];
-                        var html = '';
+                        // var html = '';
                         // if (row.isDirectory) {
                         //     // We will draw the content of the clicked folder
                         //     html = '<li onclick="listPath(' + "'" + row.nativeURL + "'" + ');">' + row.name + '</li>';
@@ -46,7 +47,7 @@
                         // }
                         alert(entries[i].name);
                         var tmp = myPath + entries[i].name;
-                        html += '<li><img src="' + tmp + '"></li>';
+                        html += '<li><img src="' + tmp + '" height="150" width="200"></li>';
 
                     }
 
