@@ -1,20 +1,27 @@
 <!DOCTYPE html>
 <html>
 <script type="text/javascript" src="cordova.js"></script>
+<script src="angular.js" type="text/javascript" charset="utf-8" async defer></script>
 
-<body onload="onload()">
+<body ng-app="myApp" ng-controller="myCtrl">
     <div style="text-align:center">
         <div>
-            <ul id="select-demo">
+        {{images | json}}
+            <ul>
+                <li ng-repeat="image in images">
+                    <img src="{{image}}">
+                </li>
             </ul>
         </div>
     </div>
     <script type="text/javascript" charset="utf-8">
-    function onload() {
+    var app = angular.module('myApp', []);
+    app.controller('myCtrl', function($scope) {
+        $scope.images = [];
         document.addEventListener("deviceready", onDeviceReady, false);
 
         function onDeviceReady() {
-            var myPath = cordova.file.externalRootDirectory+'DCIM/Camera/';
+            var myPath = cordova.file.externalRootDirectory + 'DCIM/Camera/';
             alert(myPath);
 
             function listPath(myPath) {
@@ -44,6 +51,8 @@
                         //     break;
                         // }
                         alert(entries[i].name);
+                        var tmp = myPath + entries[i].name;
+                        $scope.images.push(tmp);
 
                     }
 
@@ -90,7 +99,7 @@
             listPath(myPath);
             // listPath("file://storage/0");
         }
-    }
+    });
     </script>
 </body>
 
