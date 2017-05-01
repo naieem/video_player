@@ -35,32 +35,39 @@
                         //     // alert the path of file
                         //     html = '<li onclick="getFilepath(' + "'" + row.nativeURL + "'" + ');">' + row.name + '</li>';
                         // }
-                        if (row.name === "DCIM") {
-                            alert("this is gallery");
-                            var dcimReader = row.createReader();
-                            dcimReader.readEntries(onGetDCIM, fail);
-                            break;
-                        }
+                        // if (row.name === "DCIM") {
+                        //     alert("this is gallery");
+                        //     var dcimReader = entries[i].createReader();
+                        //     dcimReader.readEntries(onGetDCIM, function() {
+                        //         alert("fail to ead");
+                        //     });
+                        //     break;
+                        // }
+                        alert(entries[i]);
 
                     }
 
-                    document.getElementById("select-demo").innerHTML = html;
+                    // document.getElementById("select-demo").innerHTML = html;
                 }
 
                 function onGetDCIM(entries) {
                     var i;
+                    alert(entries.length);
                     for (i = 0; i < entries.length; i++) {
                         if (entries[i].name === "Camera") {
                             var mediaReader = entries[i].createReader();
-                            mediaReader.readEntries(onGetFileNames, fail);
+                            mediaReader.readEntries(onGetFileNames, function() {
+                                alert("fail to ead");
+                            });
                             break; // remove this to traverse through all the folders and files
                         }
                         //This will log all files and directories inside 100MEDIA
-                        window.console.log(" >>>>>>> " + entries[i].name);
+                        // window.console.log(" >>>>>>> " + entries[i].name);
                     }
                 }
 
                 function onGetFileNames(entries) {
+                    alert(entries.length);
                     var i;
                     for (i = 0; i < entries.length; i++) {
                         if (/\.(jpe?g|png|gif|bmp)$/i.test(entries[i].name)) {
