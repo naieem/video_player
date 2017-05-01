@@ -13,8 +13,8 @@
     document.addEventListener("deviceready", onDeviceReady, false);
 
     function onDeviceReady() {
-      alert("good");
         var myPath = cordova.file.externalRootDirectory;
+        alert(myPath);
         function listPath(myPath) {
             window.resolveLocalFileSystemURL(myPath, function(dirEntry) {
                 var directoryReader = dirEntry.createReader();
