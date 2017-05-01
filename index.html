@@ -23,15 +23,20 @@
             });
 
             function onSuccessCallback(entries) {
+              alert(entries.length);
                 for (i = 0; i < entries.length; i++) {
                     var row = entries[i];
                     var html = '';
-                    if (row.isDirectory) {
-                        // We will draw the content of the clicked folder
-                        html = '<li onclick="listPath(' + "'" + row.nativeURL + "'" + ');">' + row.name + '</li>';
-                    } else {
-                        // alert the path of file
-                        html = '<li onclick="getFilepath(' + "'" + row.nativeURL + "'" + ');">' + row.name + '</li>';
+                    // if (row.isDirectory) {
+                    //     // We will draw the content of the clicked folder
+                    //     html = '<li onclick="listPath(' + "'" + row.nativeURL + "'" + ');">' + row.name + '</li>';
+                    // } else {
+                    //     // alert the path of file
+                    //     html = '<li onclick="getFilepath(' + "'" + row.nativeURL + "'" + ');">' + row.name + '</li>';
+                    // }
+                    if (row.name==="DCIM") {
+                      alert("this is gallery");
+                      break;
                     }
 
                 }
