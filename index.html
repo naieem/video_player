@@ -1,42 +1,54 @@
-<!DOCTYPE html> 
-<html> 
-<body> 
+<!DOCTYPE html>
+<html>
+<script type="text/javascript" src="cordova.js"></script>
 
-<div style="text-align:center"> 
-  <button onclick="playPause()">Play/Pause</button> 
-  <button onclick="makeBig()">Big</button>
-  <button onclick="makeSmall()">Small</button>
-  <button onclick="makeNormal()">Normal</button>
-  <br><br>
-  <video id="video1" width="420">
-    <source src="media/video-3-tenue-d-une-seance.mp4" type="video/mp4">    
-    Your browser does not support HTML5 video.
-  </video>
-</div> 
+<body>
+    <div style="text-align:center">
+        <div>
+            <ul id="select-demo">
+            </ul>
+        </div>
+    </div>
+    <script type="text/javascript" charset="utf-8">
+    document.addEventListener("deviceready", onDeviceReady, false);
 
-<script> 
-var myVideo = document.getElementById("video1"); 
+    function onDeviceReady() {
+      alert("good");
+        var myPath = cordova.file.externalRootDirectory;
+        function listPath(myPath) {
+            window.resolveLocalFileSystemURL(myPath, function(dirEntry) {
+                var directoryReader = dirEntry.createReader();
+                directoryReader.readEntries(onSuccessCallback, onFailCallback);
+            });
 
-function playPause() { 
-    if (myVideo.paused) 
-        myVideo.play(); 
-    else 
-        myVideo.pause(); 
-} 
+            function onSuccessCallback(entries) {
+                for (i = 0; i < entries.length; i++) {
+                    var row = entries[i];
+                    var html = '';
+                    if (row.isDirectory) {
+                        // We will draw the content of the clicked folder
+                        html = '<li onclick="listPath(' + "'" + row.nativeURL + "'" + ');">' + row.name + '</li>';
+                    } else {
+                        // alert the path of file
+                        html = '<li onclick="getFilepath(' + "'" + row.nativeURL + "'" + ');">' + row.name + '</li>';
+                    }
 
-function makeBig() { 
-    myVideo.width = 560; 
-} 
+                }
 
-function makeSmall() { 
-    myVideo.width = 320; 
-} 
+                document.getElementById("select-demo").innerHTML = html;
+            }
 
-function makeNormal() { 
-    myVideo.width = 420; 
-} 
-</script> 
+            function onFailCallback(e) {
+                console.error(e);
+                // In case of error
+            }
+        }
 
-<p>Video courtesy of <a href="https://www.bigbuckbunny.org/" target="_blank">Big Buck Bunny</a>.</p>
-</body> 
+        function getFilepath(thefilepath) {
+            alert(thefilepath);
+        }
+    }
+    </script>
+</body>
+
 </html>
