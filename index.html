@@ -5,17 +5,45 @@
 
 <body onload="onload()">
     <div style="text-align:center">
-        <div>
+        <!-- <div>
             <ul id="select-demo">
             </ul>
+        </div> -->
+        <button onclick="playPause()">Play/Pause</button>
+        <button onclick="makeBig()">Big</button>
+        <button onclick="makeSmall()">Small</button>
+        <button onclick="makeNormal()">Normal</button>
+        <br>
+        <br>
+        <div id="vd">
         </div>
     </div>
     <script type="text/javascript" charset="utf-8">
-    function onload(){
-      document.addEventListener("deviceready", onDeviceReady, false);
+    function onload() {
+        var myVideo = document.getElementById("video1");
+
+        function playPause() {
+            if (myVideo.paused)
+                myVideo.play();
+            else
+                myVideo.pause();
+        }
+
+        function makeBig() {
+            myVideo.width = 560;
+        }
+
+        function makeSmall() {
+            myVideo.width = 320;
+        }
+
+        function makeNormal() {
+            myVideo.width = 420;
+        }
+        document.addEventListener("deviceready", onDeviceReady, false);
 
         function onDeviceReady() {
-            var myPath = cordova.file.externalRootDirectory + 'DCIM/Camera/';
+            var myPath = cordova.file.externalRootDirectory + 'Movies/';
             alert(myPath);
 
             function listPath(myPath) {
@@ -47,11 +75,11 @@
                         // }
                         alert(entries[i].name);
                         var tmp = myPath + entries[i].name;
-                        html += '<li><img src="' + tmp + '" height="150" width="200"></li>';
+                        html +='<video id="video1" width="420"><source src="'+tmp+'" type="video/mp4"></video>';
 
                     }
 
-                    document.getElementById("select-demo").innerHTML = html;
+                    document.getElementById("vd").innerHTML  = html;
                 }
 
                 function onGetDCIM(entries) {
